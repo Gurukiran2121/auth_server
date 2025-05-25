@@ -3,3 +3,5 @@ dist/
 coverage/
 build/
 package-lock.json
+/src/generated/prisma
+.env
