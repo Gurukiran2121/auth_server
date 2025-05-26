@@ -1,6 +1,7 @@
 const authController = async (req, resp) => {
+    console.log("authController called");
     try {
-        resp.send("Auth controller");
+        console.log(req.body);
     } catch (error) {
         console.error(error);
     }

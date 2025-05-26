@@ -10,6 +10,29 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  /// Auto-incrementing primary key
+  id Int @id @default(autoincrement())
+
+  /// The unique Auth0 user identifier (“sub” claim)
+  auth0Id String @unique
+
+  /// Standard profile fields
+  name    String?
+  picture String?
+
+  /// Email info
+  email         String  @unique
+  emailVerified Boolean @map("email_verified")
+
+  /// Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  @@map("users")
 }
